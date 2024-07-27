@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "draw.h"
+#include "drawAlpha.h"
 
 int drawGallows();
 int drawCharBoxes(struct Point p,int num,int xlen,int ylen,int space);
@@ -7,10 +8,12 @@ int main()
 {
     struct Point p0;
     clearScreen();
-    drawGallows();
-    p0.x = 70; p0.y = 10;
-    drawCharBoxes(p0,5,20,10,5);
-
+    // drawGallows();
+    // p0.x = 70; p0.y = 10;
+    // drawCharBoxes(p0,5,20,10,5);
+    draw_X();
+   
+   
     setCursorDown();
     return 0;
 }
