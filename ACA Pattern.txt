@@ -1,0 +1,29 @@
+character name
+number of curves
+curves start
+    this curve start
+        curve 1 type
+        number of points of curve 1
+        points start
+            point 1 X
+            point 1 Y
+            point 2 X
+            point 2 Y
+            continue for all points of curve 1
+        points end
+        angles start
+            angle 1 
+            angle 2
+            continue for all angles of curve 1        
+        angles end
+        radii start
+            radii 1 
+            radii 2
+            continue for all radii of curve 1        
+        radii end
+        continue for all curves of the character
+    this curve end
+curves end
+
+
+

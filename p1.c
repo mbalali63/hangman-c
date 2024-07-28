@@ -6,13 +6,19 @@ int drawGallows();
 int drawCharBoxes(struct Point p,int num,int xlen,int ylen,int space);
 int main() 
 {
-    struct Point p0;
+    struct Point p0,p1;
     clearScreen();
     // drawGallows();
-    // p0.x = 70; p0.y = 10;
+    p0.x = 70; p0.y = 10;
     // drawCharBoxes(p0,5,20,10,5);
-    draw_X();
+    // draw_X();
+    // p0.x = 10;p0.y=10;
+    // p1.x = 15;p1.y= 30;
+
+    // drawLine2(p0,p1,'.');
    
+    // drawAcr(p0, 5,0, 0.5*3.1415,'.');
+    readACAData();
    
     setCursorDown();
     return 0;

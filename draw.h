@@ -43,6 +43,46 @@ int drawLine(struct Point p0, struct Direction d0, int len0,char symbol)
     return 0;
 }
 
+int drawLine2(struct Point p0, struct Point p1, char symbol)
+{
+    //connecting line equation:
+        //  y = mx + b
+        // m = (p1.y-p0.y)/(p1.x-p0.x)
+        // b = p0.y - m p0.x
+    int i;
+    float x,y;
+    float m,b;
+    if (p0.x != p1.x)
+    {
+        m = (float)(p1.y - p0.y) / (float)(p1.x - p0.x);
+        b = p0.y - m*p0.x;
+        for (i = p0.x; i<=p1.x;i++)
+        {
+            x = (float)i;
+            y = m * x + b;
+            if (y == (int)y)
+            {
+                printf("\x1b[%d;%dH%c",(int)y,(int)x,symbol);
+            }        
+        }
+    }
+    else
+    {
+        for (i = p0.y;i<p1.y;i++)
+        {
+            printf("\x1b[%d;%dH%c",i,p0.x,symbol);
+        }
+    }
+    return 0;    
+}
+
+int drawAngle(struct Point p0,struct Direction d0,int len0,struct Direction d1,int len1,char symbol)
+{
+    drawLine(p0, d0, len0,symbol);
+    drawLine(p0, d1, len1,symbol);
+    return 0;
+}
+
 int drawRect(struct Point p0, int xlen,int ylen,char symbol)
 {
     int i;
@@ -89,10 +129,24 @@ int drawCircle(struct Point p0,int radii,char symbol)
     return 0;
 }
 
-int drawAngle(struct Point p0,struct Direction d0,int len0,struct Direction d1,int len1,char symbol)
+int drawArc(struct Point p0, int radii, float alpha0, float alpha1,char symbol)
 {
-    drawLine(p0, d0, len0,symbol);
-    drawLine(p0, d1, len1,symbol);
+    float t,dt;
+    int numOfPoints;
+    int x0,y0;
+    int x,y;
+    x0 = p0.x;
+    y0 = p0.y;
+    t = alpha0;
+    numOfPoints = 30;
+    dt = (alpha1 - alpha0) / numOfPoints;
+    for (int i=0;i<numOfPoints;i++)
+    {
+        t += dt;
+        x = (int)floor(radii * cos(t)) + x0;
+        y = (int)floor(radii * sin(t)) + y0;
+        printf("\x1b[%d;%dH%c",y,x,symbol);
+    }
     return 0;
 }
 
